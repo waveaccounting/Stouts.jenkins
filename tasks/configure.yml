@@ -32,6 +32,9 @@
   retries: 10
   delay: 10
 
+- name: Change owner on jenkins-cli.jar
+  file: path={{jenkins_home}}/jenkins-cli.jar owner={{ jenkins_user }} group={{ jenkins_group }} mode=0755
+
 - name: jenkins-configure | Configure Jenkins System
   template: src=jenkins_system_config.xml.j2 dest={{jenkins_home}}/jenkins.model.JenkinsLocationConfiguration.xml owner=jenkins group=jenkins force=yes
   sudo: yes  
